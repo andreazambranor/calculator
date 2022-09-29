@@ -55,10 +55,17 @@ const Perform_Calculation={
     '=': (First_Operand, Second_Operand) =>Second_Operand
 };
 
+function Calculator_Reset() {
+    Calculator.Display_Value = '0';
+    Calculator.First_Operand = null;
+    Calculator.Wait_Second_Operand = false;
+    Calculator.operator = null;
+}
+
 
 //UPDATE SCREEN WITH RESULT OF CALCULATION
 function Update_Display() {
-    function display = document.querySelector(',calculator-screen');
+    const display = document.querySelector('.calculator-screen');
     display.value = Calculator.Display_Value;
 }
 
@@ -67,7 +74,7 @@ Update_Display ();
 const keys=document.querySelector('.calculator-keys');//KEEP TRACK OF BUTTON CLICKS
 keys.addEventListener('click',(event)=> {
     const {target} = event; //TARGET REPRESENTS THE ELEMENT THAT WAS CLICKED
-    if(!targer.matches('button')) {
+    if(!target.matches('button')) {
         return;
     }
     if (target.classList.contains('operator')) {
